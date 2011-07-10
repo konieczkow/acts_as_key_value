@@ -31,7 +31,7 @@ EOV
           if record.blank?
             create(:key => key, :value => value)
           else
-            record.update_attributes(:value => value)
+            record.map { |r| r.update_attributes(:value => value) }
           end
         end
       end
