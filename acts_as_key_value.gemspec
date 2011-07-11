@@ -4,8 +4,8 @@ require File.expand_path('../lib/acts_as_key_value/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Maciej Gajewski"]
   gem.email         = ["gajewski.mm@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Acts_as_key_value lets you turn your model into key/value storage}
+  gem.summary       = %q{Acts_as_key_value lets you turn your model into key/value storage. You get some convenient setters and getters like [], []=, get, set etc.}
   gem.homepage      = ''
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
