@@ -28,7 +28,7 @@ EOV
           (key = key.to_s) unless key.kind_of? String
           where(:key => key).first
         end
-        alias [], :get
+        alias [] :get
 
         def set(key, value)
           (key   = key.to_s)   unless key.kind_of? String
@@ -40,8 +40,8 @@ EOV
             record.first.update_attributes(:value => value)
           end
         end
-        alias []=, :set
-        
+        alias []= :set
+
       end
 
       module InstanceMethods
