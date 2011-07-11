@@ -7,7 +7,12 @@ module ActiveRecord
 
       
       module ClassMethods
-        def acts_as_key_value
+
+
+        def acts_as_key_value(options = {})
+
+          configuration = { :unique_keys => true }
+          configuration.update(options)
 
           class_eval <<-EOV
 include ActiveRecord::Acts::KeyValue::InstanceMethods
@@ -21,7 +26,7 @@ EOV
 
         def get(key)
           (key = key.to_s) unless key.kind_of? String
-          where(:key => key)
+          where(:key => key).first
         end
 
         def set(key, value)
@@ -31,7 +36,7 @@ EOV
           if record.blank?
             create(:key => key, :value => value)
           else
-            record.map { |r| r.update_attributes(:value => value) }
+            record.first.update_attributes(:value => value)
           end
         end
       end
