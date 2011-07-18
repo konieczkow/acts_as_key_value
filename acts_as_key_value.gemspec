@@ -14,4 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "acts_as_key_value"
   gem.require_paths = ['lib']
   gem.version       = ActsAsKeyValue::VERSION
+
+  gem.add_development_dependency "rspec"
+  gem.add_dependency "rails", "~>3.0"
 end
