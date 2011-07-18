@@ -7,10 +7,6 @@ module ActiveRecord
 
       module ClassMethods
         def acts_as_key_value(options = {})
-
-          configuration = {:unique_keys => true}
-          configuration.update(options)
-
           class_eval <<-EOV
             include ActiveRecord::Acts::KeyValue::InstanceMethods
 
@@ -22,12 +18,8 @@ module ActiveRecord
 
         def get(key, options = {})
           (key = key.to_s) unless key.kind_of? String
-          if options[:object]
-            where(:key => key).first
-          else
-            where(:key => key).first.value
-          end
-
+          object = where(:key => key)
+          options[:object] ? object.first : object.first.value
         end
 
         alias [] :get
@@ -41,11 +33,7 @@ module ActiveRecord
           else
             record.first.update_attributes(:value => value)
           end
-          if options[:object]
-            record.first
-          else
-            value
-          end
+          options[:object] ? record.first : value
         end
 
         alias []= :set
