@@ -20,9 +20,14 @@ module ActiveRecord
           EOV
         end
 
-        def get(key)
+        def get(key, options = {})
           (key = key.to_s) unless key.kind_of? String
-          where(:key => key).first
+          if options[:object]
+            where(:key => key).first
+          else
+            where(:key => key).first.value
+          end
+
         end
 
         alias [] :get
@@ -33,8 +38,10 @@ module ActiveRecord
           record = where(:key => key)
           if record.blank?
             create(:key => key, :value => value)
+            value
           else
             record.first.update_attributes(:value => value)
+            value
           end
         end
 

@@ -1,9 +1,10 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'models/basic_model'
 
 require 'rails'
 require 'acts_as_key_value'
+
+require 'models'
 
 RSpec.configure do |config|
   # some (optional) config here

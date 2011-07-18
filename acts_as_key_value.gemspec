@@ -16,5 +16,6 @@ Gem::Specification.new do |gem|
   gem.version       = ActsAsKeyValue::VERSION
 
   gem.add_development_dependency "rspec"
+  gem.add_development_dependency "sqlite3"
   gem.add_dependency "rails", "~>3.0"
 end
