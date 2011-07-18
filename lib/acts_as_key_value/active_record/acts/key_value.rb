@@ -32,15 +32,18 @@ module ActiveRecord
 
         alias [] :get
 
-        def set(key, value)
+        def set(key, value, options = {})
           (key = key.to_s) unless key.kind_of? String
           (value = value.to_s) unless value.kind_of? String
           record = where(:key => key)
           if record.blank?
             create(:key => key, :value => value)
-            value
           else
             record.first.update_attributes(:value => value)
+          end
+          if options[:object]
+            record.first
+          else
             value
           end
         end

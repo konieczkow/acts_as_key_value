@@ -83,6 +83,16 @@ describe "Basic Key Value model" do
       (BasicModel[@key] = @value).should == @value
     end
 
+    it "should return object when assigned with set(... , :object => true)" do
+      BasicModel.set(@key, @value, :object => true).should == BasicModel.where(:key => @key).first
+    end
+
+    it "should return object when updated with set(... , :object => true)" do
+      BasicModel.create(:key => @key, :value => @value)
+      BasicModel.set(@key, @value, :object => true).should == BasicModel.where(:key => @key).first
+    end
+
+
   end
 
 end
