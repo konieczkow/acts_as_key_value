@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    acts_as_key_value (0.0.3)
+    acts_as_key_value (0.0.4)
       rails (~> 3.0)
 
 GEM
